@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BridgeControllButton : MonoBehaviour
+public class BridgeControllerButton : MonoBehaviour
 {
     [SerializeField] private Button _button;
-    [SerializeField] private BridgeContoller _bridge;
+    [SerializeField] private BridgeController _bridge;
     
     void Start()
     {

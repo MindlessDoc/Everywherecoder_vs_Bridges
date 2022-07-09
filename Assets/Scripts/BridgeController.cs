@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BridgeContoller : MonoBehaviour
+public class BridgeController : MonoBehaviour
 {
     [SerializeField] private bool _closed;
     [SerializeField] private GameObject _closedObject;
@@ -33,5 +33,10 @@ public class BridgeContoller : MonoBehaviour
         }
 
         _closed = !_closed;
+    }
+
+    public bool isClosed()
+    {
+        return _closed;
     }
 }
