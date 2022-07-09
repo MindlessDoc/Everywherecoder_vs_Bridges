@@ -15,6 +15,7 @@ public class InfoOkButtonController : MonoBehaviour
     
     void OnClick()
     {
+        Time.timeScale = 1;
         Destroy(infoPanel);
     }
 }

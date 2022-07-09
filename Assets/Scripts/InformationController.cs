@@ -19,10 +19,12 @@ public class InformationController : MonoBehaviour
     {
         if (curInfoPanel == null)
         {
+            Time.timeScale = 0;
             curInfoPanel = Instantiate(_informationPanel, new Vector2(0, 0), Quaternion.identity);
         }
         else
         {
+            Time.timeScale = 1;
             Destroy(curInfoPanel);
         }
     }
