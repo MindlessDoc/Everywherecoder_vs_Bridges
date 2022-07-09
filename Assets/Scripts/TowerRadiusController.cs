@@ -5,23 +5,13 @@ using UnityEngine;
 
 public class TowerRadiusController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private CommonBridgeContoller _contoller;
 
     void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("COME IN!");
+        _contoller.Activate();
     }
 
     void OnTriggerExit2D(Collider2D other) {
-        Debug.Log("COME OUT!");
+        _contoller.Deactivate();
     }
 }
