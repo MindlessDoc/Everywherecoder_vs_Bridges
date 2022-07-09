@@ -10,7 +10,6 @@ public class TowerRadiusController : MonoBehaviour
     [SerializeField] private CommonBridgeContoller _contoller;
 
     void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("!!!!");
         _contoller.Activate(_bridgeId);
     }
 
