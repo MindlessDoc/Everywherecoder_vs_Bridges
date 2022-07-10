@@ -9,14 +9,19 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float _correct = 1;
     [SerializeField] private Camera _camera;
 
+    [SerializeField] private AudioSource _step;
+    
     private Animator _animator;
 
     private Vector2 moved;
     private bool right;
 
+    private float _time;
+
     void Start()
     {
         _animator = GetComponent<Animator>();
+        _time = Time.time;
     }
     
     void FixedUpdate()
@@ -72,6 +77,11 @@ public class PlayerControl : MonoBehaviour
     {
         _rigidbody.MovePosition(vec);
         _animator.SetBool("isRunning", true);
+        if (Time.time - _time > 0.25)
+        {
+            _time = Time.time;
+            _step.Play();
+        }
     }
 
     public void setPosition(Vector2 position)

@@ -9,6 +9,9 @@ public class CoolPlayerController : MonoBehaviour
     [SerializeField] private float _correct = 1;
     [SerializeField] private Camera _camera;
 
+    [SerializeField] private AudioSource _stayBike;
+    [SerializeField] private AudioSource _goBike;
+
     private Vector2 moved;
     private bool right;
 
@@ -38,6 +41,14 @@ public class CoolPlayerController : MonoBehaviour
         {
             Move(Vector2.down * Time.deltaTime * _speed + _rigidbody.position);
         }
+        else
+        {
+            _goBike.Stop();
+            if (!_stayBike.isPlaying)
+            {
+                _stayBike.Play();
+            }
+        }
     }
 
     private void Flip()
@@ -59,7 +70,12 @@ public class CoolPlayerController : MonoBehaviour
 
     private void Move(Vector2 vec)
     {
+        _stayBike.Stop();
         _rigidbody.MovePosition(vec);
+        if (!_goBike.isPlaying)
+        {
+            _goBike.Play();
+        }
     }
     
     public void setPosition(Vector2 position)

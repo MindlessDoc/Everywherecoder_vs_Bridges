@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BridgeController : MonoBehaviour
 {
-    [SerializeField] private bool _closed;
+    [SerializeField] private bool _closed = true;
     [SerializeField] private GameObject _closedObject;
     [SerializeField] private GameObject _openedObject;
     
@@ -23,13 +23,13 @@ public class BridgeController : MonoBehaviour
     {
         if (_closed)
         {
-            _openedObject.SetActive(false);
-            _closedObject.SetActive(true);
+            _openedObject.SetActive(true);
+            _closedObject.SetActive(false);
         }
         else
         {
-            _openedObject.SetActive(true);
-            _closedObject.SetActive(false);
+            _openedObject.SetActive(false);
+            _closedObject.SetActive(true);
         }
 
         _closed = !_closed;

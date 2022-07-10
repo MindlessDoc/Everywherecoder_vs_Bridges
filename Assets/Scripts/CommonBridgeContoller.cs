@@ -9,6 +9,7 @@ public class CommonBridgeContoller : MonoBehaviour
 
     [SerializeField] private Button[] _buttons;
     [SerializeField] private BridgeController[] _bridgeControllers;
+    [SerializeField] private AudioSource _audio;
 
     private FirstLevelScenario _scenario;
 
@@ -18,7 +19,7 @@ public class CommonBridgeContoller : MonoBehaviour
         //TODO убрать
         if (_scenario == null)
         {
-            _scenario = new FirstLevelScenario(_buttons, _bridgeControllers);
+            _scenario = new FirstLevelScenario(_buttons, _bridgeControllers, _audio);
         }
         curbridgeId = bridgeId;
         _commonController.SetActive(true);

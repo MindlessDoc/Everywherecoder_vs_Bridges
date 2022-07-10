@@ -6,10 +6,12 @@ public class FirstLevelScenario
 {
     private Button[] _buttons;
     private Action[] scenarios;
+    private AudioSource _audio;
 
-    public FirstLevelScenario(Button[] buttons, BridgeController[] _bridgeControllers)
+    public FirstLevelScenario(Button[] buttons, BridgeController[] _bridgeControllers, AudioSource audio)
     {
         _buttons = buttons;
+        _audio = audio;
 
         scenarios = new Action[4];
 
@@ -25,19 +27,29 @@ public class FirstLevelScenario
             else
             {
                 _bridgeControllers[0].UpdateState();
+                if (!_bridgeControllers[1].isClosed())
+                {
+                    _bridgeControllers[1].UpdateState();
+                }
             }
+            _audio.Play();
         });
         
         _buttons[1].onClick.AddListener(() =>
         {
-            if (!_bridgeControllers[3].isClosed())
+            if (_bridgeControllers[3].isClosed())
             {
                 _bridgeControllers[3].UpdateState();
+                if (_bridgeControllers[2].isClosed())
+                {
+                    _bridgeControllers[2].UpdateState();
+                }
             }
             else
             {
                 _bridgeControllers[2].UpdateState();
             }
+            _audio.Play();
         });
         
         _buttons[2].onClick.AddListener(() =>
@@ -48,8 +60,13 @@ public class FirstLevelScenario
             }
             else
             {
-                _bridgeControllers[3].UpdateState();
+                _bridgeControllers[0].UpdateState();
+                if (!_bridgeControllers[1].isClosed())
+                {
+                    _bridgeControllers[1].UpdateState();
+                }
             }
+            _audio.Play();
         });
         
         _buttons[3].onClick.AddListener(() =>
@@ -57,16 +74,21 @@ public class FirstLevelScenario
             if (!_bridgeControllers[2].isClosed())
             {
                 _bridgeControllers[3].UpdateState();
+                if (_bridgeControllers[1].isClosed())
+                {
+                    _bridgeControllers[1].UpdateState();
+                }
             }
             else
             {
                 _bridgeControllers[1].UpdateState();
+                _bridgeControllers[3].UpdateState();
+                if (_bridgeControllers[1].isClosed())
+                {
+                    _bridgeControllers[1].UpdateState();
+                }
             }
+            _audio.Play();
         });
     }
-
-    /*public void ActivateScenario(int number)
-    {
-        scenarios[number]();
-    }*/
 }
