@@ -2,23 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControl : MonoBehaviour
+public class CoolPlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private float _speed;
     [SerializeField] private float _correct = 1;
     [SerializeField] private Camera _camera;
 
-    private Animator _animator;
-
     private Vector2 moved;
     private bool right;
 
-    void Start()
-    {
-        _animator = GetComponent<Animator>();
-    }
-    
     void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.A))
@@ -45,16 +38,12 @@ public class PlayerControl : MonoBehaviour
         {
             Move(Vector2.down * Time.deltaTime * _speed + _rigidbody.position);
         }
-        else
-        {
-            _animator.SetBool("isRunning", false);
-        }
     }
 
     private void Flip()
     {
         right = !right;
-        Vector3 localScale = transform.localScale;
+        Vector2 localScale = transform.localScale;
         localScale.x *= -1;
         transform.localScale = localScale;
         if (right)
@@ -71,9 +60,8 @@ public class PlayerControl : MonoBehaviour
     private void Move(Vector2 vec)
     {
         _rigidbody.MovePosition(vec);
-        _animator.SetBool("isRunning", true);
     }
-
+    
     public void setPosition(Vector2 position)
     {
         transform.position = _camera.WorldToScreenPoint(position);
@@ -84,4 +72,3 @@ public class PlayerControl : MonoBehaviour
         return _camera.ScreenToWorldPoint(_rigidbody.position);
     }
 }
-
